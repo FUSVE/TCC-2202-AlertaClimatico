@@ -4,12 +4,12 @@
     "slug": "alerta-climatico-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "../../assets/logotipo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "../../assets/logotipo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#16202A"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "../../assets/logotipo.png",
+        "backgroundColor": "#16202A"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "../../assets/logotipo.png"
     }
   }
 }
