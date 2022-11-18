@@ -12,12 +12,118 @@ datasource db {
 
 // criar uma migration: yarn prisma migrate dev
 model User {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   name String
-  email String
+  email String @unique
   password String
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
   @@map("users")
+  points_interest PointInterest[]
+}
+
+model State {
+  id Int @id @default(autoincrement())
+  name String
+  abbreviation String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("states")
+  cities City[]
+}
+
+model City {
+  id Int @id @default(autoincrement())
+  name String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  state State @relation(fields: [state_id], references: [id])
+  weather Weather @relation(fields: [weather_id], references: [id])
+
+  @@map("cities")
+  state_id Int
+  risk_zones RiskZone[]
+  weather_id Int @unique
+}
+
+model RiskZone {
+  id Int @id @default(autoincrement())
+  name String
+  risk String
+  details String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  city City @relation(fields: [city_id], references: [id])
+
+  @@map("risk_zones")
+  city_id Int
+  points_interest PointInterest[]
+}
+
+model PointInterest {
+  id Int @id @default(autoincrement())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  risk_zone RiskZone @relation(fields: [risk_zone_id], references: [id])
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("points_interest")
+  risk_zone_id Int
+  user_id Int
+}
+
+model Weather {
+  id Int @id @default(autoincrement())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  city City?
+  current_weather CurrentWeather @relation(fields: [current_weather_id], references: [id])
+  weather_forecast WeatherForecast @relation(fields: [weather_forecast_id], references: [id])
+
+  @@map("weathers")
+  current_weather_id Int @unique
+  weather_forecast_id Int @unique
+}
+
+model CurrentWeather {
+  id Int @id @default(autoincrement())
+  temperature Decimal
+  thermal_sensation Decimal
+  humidity Decimal
+  wind_velocity Decimal
+  pressure Decimal
+  condition String
+  icon String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  weather Weather?
+
+  @@map("current_weathers")
+}
+
+model WeatherForecast {
+  id Int @id @default(autoincrement())
+  temperature_min Decimal
+  temperature_max Decimal
+  thermal_sensation_min Decimal
+  thermal_sensation_max Decimal
+  humidity_min Decimal
+  humidity_max Decimal
+  pressure Decimal
+  probability_rain Int
+  rain_precipitation Decimal
+  wind_velocity_avg Decimal
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  weather Weather?
+
+  @@map("weather_forecasts")
 }
