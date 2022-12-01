@@ -56,6 +56,14 @@ export default function SignIn() {
                 <TouchableOpacity style={styles.button} onPress={handleLogin}>
                     <Text style={styles.buttonText}>Acessar</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity style={styles.accountButton}> 
+                    <Text style={styles.accountButtonText}>Não possui conta? Cadastre-se</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                    <Text style={styles.forgotPassword}>Esqueci minha senha</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -115,5 +123,24 @@ const styles = StyleSheet.create({
         color: "#16202A",
         fontWeight: "bold",
         fontSize: 18
+    },
+    accountButton:{
+        justifyContent: "center",
+        alignItems: "center",
+        width: "95%",
+        height: 40,
+        borderColor: "#FFCA01",
+        borderRadius: 5,
+        borderWidth: 2,
+        marginTop: 8
+    },
+    accountButtonText:{
+        color: "#FFCA01",
+        fontWeight: "bold",
+        fontSize: 14
+    },
+    forgotPassword:{
+        color: "#FFCA01",
+        marginTop: 12
     }
 })
