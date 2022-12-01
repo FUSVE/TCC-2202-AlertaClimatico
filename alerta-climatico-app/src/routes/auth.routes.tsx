@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SignUp';
 
 const Stack = createNativeStackNavigator();
 
