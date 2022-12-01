@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Map from '../pages/Map';
 import Profile from '../pages/Profile';
 import Weather from '../pages/Weather';
+import Account from '../pages/Account';
 
 import Feather from 'react-native-vector-icons/Feather'; 
 
